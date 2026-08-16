@@ -5,13 +5,14 @@
 
 ### 让 Agent 沉淀经验，让人专注创造。
 
+<a href="https://trendshift.io/repositories/29310?utm_source=repository-badge&amp;utm_medium=badge&amp;utm_campaign=badge-repository-29310" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/repositories/29310" alt="TencentCloud%2FTencentDB-Agent-Memory | Trendshift" width="250" height="55"/></a>
 
 [![npm](https://img.shields.io/npm/v/@tencentdb-agent-memory/memory-tencentdb?color=blue)](https://www.npmjs.com/package/@tencentdb-agent-memory/memory-tencentdb)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E=22.16-brightgreen)](https://nodejs.org/)
 [![OpenClaw](https://img.shields.io/badge/OpenClaw-%3E=2026.3.13-orange)](https://github.com/openclaw/openclaw)
 [![Hermes](https://img.shields.io/badge/Hermes-Gateway-7B61FF)](https://hermes-agent.nousresearch.com/docs/)
-[![Discord](https://img.shields.io/badge/Discord-Join-5865F2?logo=discord&logoColor=white)](https://discord.gg/kDtHb5RW2)
+[![Discord](https://img.shields.io/badge/Discord-Join-5865F2?logo=discord&logoColor=white)](https://discord.gg/dJQM6mKMF)
 
 [效果亮点](#-效果亮点) · [项目简介](#项目简介) · [核心技术](#核心技术拒绝平铺走向分层与符号化) · [方案特点](#-方案特点) · [快速开始](#快速开始)
 
@@ -55,7 +56,8 @@ TencentDB Agent Memory 帮助 Agent 学会你的流程、保留任务上下文�
 
 > **让 Agent 记住该记的，让人把注意力留给判断、创造和真正有价值的工作。**
 <p align="center">
-<img src="https://github.com/user-attachments/assets/6e9dd306-f462-4cae-adc4-3194be25c514" width="360" alt="Agent Memory 微信社群二维码" />
+<img src="https://github.com/user-attachments/assets/3d762dc0-3e51-4a63-8ded-1ad60c4fe612" width="360" alt="Agent Memory 微信社群二维码" />
+
 
   <br/>
   <sub>📱 扫码加入 <b>Agent Memory 微信社群</b>，与早期开发者直接对话</sub>
@@ -353,8 +355,37 @@ curl http://127.0.0.1:8420/health
 
 > Provider 的完整参考（环境变量、故障排查、LLM 工具 schema、supervisor 行为）见 [`hermes-plugin/memory/memory_tencentdb/README.md`](./hermes-plugin/memory/memory_tencentdb/README.md)，调整 supervisor / circuit-breaker 默认值之前请先读它。
 
-
 ---
+
+### 3. Hermes（Windows 原生安装）
+
+Windows 原生 Hermes 环境下，在仓库根目录用 Command Prompt 或 PowerShell
+运行内置批处理脚本：
+
+```powershell
+$env:TDAI_LLM_API_KEY="your-api-key"
+$env:TDAI_LLM_BASE_URL="https://api.openai.com/v1"
+$env:TDAI_LLM_MODEL="gpt-4o"
+.\scripts\setup-hermes-memory-tencentdb.bat
+```
+
+脚本会检查 `node`、`npm`、Python 和 Hermes，要求 Node.js `>=22.16.0`；
+当 Gateway 依赖缺失时执行 `npm install --omit=dev`，创建
+`%USERPROFILE%\.memory-tencentdb\memory-tdai`，复制插件到
+`%USERPROFILE%\.hermes\plugins\memory_tencentdb`，把 Gateway 环境变量写入
+`%USERPROFILE%\.hermes\.env`，随后启动 Gateway 并轮询：
+
+```powershell
+curl.exe http://127.0.0.1:8420/health
+```
+
+如果 `%USERPROFILE%\.hermes\config.yaml` 已存在，请确认包含：
+
+```yaml
+memory:
+  provider: memory_tencentdb
+```
+
 
 ## 🔒 Gateway 安全配置（可选）
 
@@ -520,7 +551,7 @@ export MEMORY_TENCENTDB_GATEWAY_API_KEY="<与 Gateway 同一份密钥>"
 - 💡 **有想法想交流？** 欢迎在 [GitHub Discussions](https://github.com/Tencent/TencentDB-Agent-Memory/discussions) 发起讨论。
 - 🛠️ **想贡献代码？** 请先阅读 [CONTRIBUTING.md](./CONTRIBUTING_CN.md)。
 - 💬 **想加入交流群？** 扫码加入 **Agent Memory 微信社群**，与早期开发者直接对话。
-<p align="center"><img src="https://github.com/user-attachments/assets/6e9dd306-f462-4cae-adc4-3194be25c514" width="200" alt="Agent Memory 微信社群二维码" />
+<p align="center"><img src="https://github.com/user-attachments/assets/3d762dc0-3e51-4a63-8ded-1ad60c4fe612" width="200" alt="Agent Memory 微信社群二维码" />
 
 ---
 
@@ -547,5 +578,17 @@ export MEMORY_TENCENTDB_GATEWAY_API_KEY="<与 Gateway 同一份密钥>"
     </td>
   </tr>
 </table>
+
+---
+
+## Star 趋势
+
+<p align="center">
+  <a href="https://www.star-history.com/#Tencent/TencentDB-Agent-Memory&Date">
+    <img src="https://github.com/user-attachments/assets/16753a90-8bc9-471b-819e-311947ed94f7" alt="Star History Chart" width="600" />
+  </a>
+</p>
+
+---
 
 [MIT](./LICENSE) © TencentDB Agent Memory Team
